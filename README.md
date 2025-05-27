@@ -89,7 +89,6 @@ reward = α × (performance_retention) +
 | **Agent-Based** | **22%** | **4.1x** | **96%** |
 
 ### 다양한 모델에서의 검증
-- **GPT-2**: 75% 압축, 성능 94% 유지
 - **DistilBERT**: 60% 추가 압축, 성능 92% 유지  
 - **RoBERTa**: 70% 압축, 성능 95% 유지
 
