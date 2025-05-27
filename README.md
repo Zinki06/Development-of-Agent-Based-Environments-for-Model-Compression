@@ -112,8 +112,3 @@ reward = α × (performance_retention) +
 - [PyTorch Model Compression](https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html)
 - [ONNX Runtime](https://onnxruntime.ai/)
 
----
-
-<div align="center">
-  <a href="../README.md">🏠 메인으로 돌아가기</a>
-</div> 
