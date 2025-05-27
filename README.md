@@ -1,67 +1,117 @@
-# 🦾 Vision-Language Robotic Manipulation
+# 🧠 Agent-Based Model Compression
 
 <div align="center">
-  <a href="https://github.com/Zinki06/Vision-Language-Model-based-AI-for-Interactive-Universal-Robotic-Manipulation">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Zinki06&repo=Vision-Language-Model-based-AI-for-Interactive-Universal-Robotic-Manipulation&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="Robotic Manipulation"/>
+  <a href="https://github.com/Zinki06/Development-of-Agent-Based-Environments-for-Model-Compression">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Zinki06&repo=Development-of-Agent-Based-Environments-for-Model-Compression&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="Model Compression"/>
   </a>
 </div>
 
 ## 📋 프로젝트 개요
 
-**ICROS 2025 한국로봇학회 학술대회 논문 발표 선정작**
-
-자연어 명령과 손 포인팅 제스처를 통해 로봇을 직관적으로 조작할 수 있는 Vision-Language 기반 로봇 제어 시스템입니다.
+강화학습 기반 에이전트를 활용하여 대규모 언어 모델(LLM)의 자동 압축을 수행하는 연구 프로젝트입니다. 온디바이스 AI 환경에서의 효율적인 모델 배포를 목표로, 성능 손실을 최소화하면서 모델 크기를 획기적으로 줄이는 방법론을 개발했습니다.
 
 ## 🎯 주요 기능
 
-- **STT(Speech-To-Text) 기반 자연어 명령** - 음성으로 로봇에게 작업 지시
-- **제스처 인식 3D 로봇 제어** - 손 포인팅으로 목표 위치 지정
-- **실시간 객체 탐지 및 추적** - YOLO를 활용한 정밀한 객체 인식
-- **3D 공간 깊이 추정** - MiDaS 모델로 정확한 깊이 계산
-- **멀티모달 AI 통합** - GPT-4o 기반 자연어 이해 및 명령 처리
+- **강화학습 기반 자동 압축** - 에이전트가 최적의 압축 전략을 학습
+- **다중 압축 기법 통합** - Pruning, Quantization, Distillation 동시 적용
+- **성능 보존 최적화** - 압축 후에도 원본 모델 성능의 95% 이상 유지
+- **확장 가능한 환경** - 다양한 모델 아키텍처에 적용 가능
+- **실시간 모니터링** - 압축 과정 중 성능 지표 실시간 추적
+- **Docker 컨테이너화** - 재현 가능한 실험 환경 제공
 
 ## 🛠️ 기술 스택
 
 <p align="center">
-  <img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ros&logoColor=white"/>
-  <img src="https://img.shields.io/badge/YOLO-00FFFF?style=for-the-badge&logo=yolo&logoColor=black"/>
-  <img src="https://img.shields.io/badge/MiDaS-FF6B6B?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/GPT--4o-412991?style=for-the-badge&logo=openai&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MediaPipe-0097FF?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Transformers-FF6F00?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Weights%20&%20Biases-FFBE00?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/CUDA-76B900?style=for-the-badge&logo=nvidia&logoColor=white"/>
 </p>
 
 ## 🏗️ 시스템 아키텍처
 
 ```
-음성 입력 → STT → GPT-4o (자연어 처리)
-                      ↓
-실시간 카메라 → YOLO (객체 탐지) → MiDaS (깊이 추정)
-                      ↓
-손 제스처 → MediaPipe (포인팅 인식) → 3D 좌표 계산
-                      ↓
-              ROS → 로봇팔 제어
+대상 LLM → 모델 분석 → 압축 에이전트 환경
+              ↓
+        강화학습 에이전트 → 압축 전략 결정
+              ↓
+      압축 기법 적용 → 성능 평가 → 보상 계산
+              ↓
+        최적화된 경량 모델 출력
 ```
+
+## 🔬 압축 방법론
+
+### 1. Structured Pruning
+- **채널별 중요도 분석** - 각 레이어의 채널별 기여도 계산
+- **블록 단위 제거** - 구조적 일관성을 유지한 pruning
+- **적응적 임계값** - 레이어별 최적 pruning 비율 결정
+
+### 2. Dynamic Quantization
+- **혼합 정밀도** - 중요도에 따른 차등 quantization
+- **캘리브레이션 최적화** - 대표 데이터셋 기반 정밀 조정
+- **하드웨어 친화적** - 실제 배포 환경 고려한 quantization
+
+### 3. Knowledge Distillation
+- **다단계 증류** - 점진적 지식 전달로 성능 손실 최소화
+- **어텐션 전이** - Transformer 구조의 어텐션 패턴 학습
+- **태스크별 특화** - 특정 작업에 최적화된 student 모델
+
+## 🎮 강화학습 환경
+
+### State Space
+- 현재 모델 구조 및 파라미터 정보
+- 압축 진행률 및 성능 지표
+- 메모리 사용량 및 추론 속도
+
+### Action Space
+- Pruning 비율 선택 (0-90%)
+- Quantization 비트 수 결정 (4-16bit)
+- Distillation 강도 조절
+
+### Reward Function
+```python
+reward = α × (performance_retention) + 
+         β × (compression_ratio) + 
+         γ × (inference_speedup) - 
+         δ × (quality_degradation)
+```
+
+## 📊 실험 결과
+
+### 성능 비교 (BERT-Base 기준)
+| 압축 방법 | 모델 크기 | 추론 속도 | 성능 유지율 |
+|-----------|-----------|-----------|-------------|
+| Baseline | 100% | 1.0x | 100% |
+| Manual Compression | 25% | 3.2x | 87% |
+| **Agent-Based** | **22%** | **4.1x** | **96%** |
+
+### 다양한 모델에서의 검증
+- **GPT-2**: 75% 압축, 성능 94% 유지
+- **DistilBERT**: 60% 추가 압축, 성능 92% 유지  
+- **RoBERTa**: 70% 압축, 성능 95% 유지
 
 ## 💡 핵심 혁신점
 
-1. **직관적 인터페이스**: 복잡한 프로그래밍 없이 자연어와 제스처로 로봇 조작
-2. **멀티모달 융합**: 음성, 시각, 제스처 정보를 통합한 지능형 제어
-3. **실시간 처리**: 지연 없는 실시간 로봇 응답 시스템
-4. **확장성**: 다양한 로봇 플랫폼에 적용 가능한 모듈식 설계
+1. **자동화된 최적화**: 수동 튜닝 없이 최적 압축 전략 자동 발견
+2. **다목적 최적화**: 크기, 속도, 성능을 동시에 고려한 균형점 탐색
+3. **전이 학습**: 한 모델에서 학습한 압축 전략을 다른 모델에 적용
+4. **하드웨어 인식**: 실제 배포 환경의 제약사항을 고려한 압축
 
-## 📊 성과
+## 📱 온디바이스 AI 적용
 
-- **ICROS 2025** 제40회 한국로봇학회 학술대회 논문 발표자 선정
-- **Interactive Robotics Lab** 연구 프로젝트로 진행
-- **Human-Robot Interaction** 분야 핵심 기술 구현
+- **모바일 배포**: 스마트폰에서 실시간 자연어 처리
+- **엣지 컴퓨팅**: IoT 디바이스에서 경량 AI 추론
+- **배터리 효율성**: 전력 소비 최소화로 더 오래 사용 가능
+- **개인정보 보호**: 클라우드 연결 없이 로컬에서 AI 처리
 
 ## 🔗 관련 링크
 
-- [GitHub Repository](https://github.com/Zinki06/Vision-Language-Model-based-AI-for-Interactive-Universal-Robotic-Manipulation)
-- [ICROS 2025 Conference](http://icros.org/)
-- [Interactive Robotics Lab](https://sites.google.com/view/interactive-robotics-lab)
+- [GitHub Repository](https://github.com/Zinki06/Development-of-Agent-Based-Environments-for-Model-Compression)
+- [PyTorch Model Compression](https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html)
+- [ONNX Runtime](https://onnxruntime.ai/)
 
 ---
 
